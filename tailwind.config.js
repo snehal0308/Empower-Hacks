@@ -4,12 +4,12 @@ module.exports = {
     theme: {
       extend: {
         fontFamily: {
-            'lexend': ["Lexend. sans-serif"]
+            'lexend': ["Lexend, sans-serif"]
         },
         colors: {
             'white': '#fff',
             'black': '#000',
-            'EV-dark-gray': '##BABABA',
+            'EV-dark-gray': '#BABABA',
             'EV-purple': '#BD74C9',
             'EV-green': '#74C996',
             'EV-black': '#202020',
