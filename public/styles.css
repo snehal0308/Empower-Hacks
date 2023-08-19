@@ -568,6 +568,29 @@ video {
   }
 }
 
+.purpleline{
+  background: #BD74C9;
+  width: 1326px;
+  height: 5px;
+  position: absolute;
+  left:0;
+  top: 91px;
+  z-index: 1;
+}
+
+
+.triangle {
+  width: 750px;
+  height: 350px;
+  background: #202020;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  position: absolute;
+  left: 576px;
+  top: 92px;
+}
+
+
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
