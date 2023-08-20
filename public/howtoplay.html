@@ -7,28 +7,67 @@
     <link href="styles.css" rel = "stylesheet">
 </head>
 
-<body class="bg-EV-black-purple-gradient">
+<body class="bg-gradient-to-t from-EV-purple to-EV-black h-full w-full">
     <script src="index.js"></script>
 
     <header class="bg-EV-black px-10 py-2">
         <nav class="text-white flex justify-between font-lexend py-6">
-            <a href = "index.html" class="flex flex-row">
-                <img src = "assets/icon.svg" alt="logo" class="-translate-y-1">
-                <span class="text-EV-purple">Edu</span><span class="text-EV-green">Venture</span>
-            </a>
+            <div class="container w-64 text-xl font-bold">
+                <a href = "index.html" class="flex flex-row">
+                    <img src = "assets/icon.svg" alt="logo" class="-translate-y-1">
+                    <span class="text-EV-purple">Edu</span><span class="text-EV-green">Venture</span>
+                </a>
+            </div>
             <ul>
-                <li class="inline-block px-5"><a class = "text-xl" href = "howtoplay.html">How to Play</a></li>
-                <li class="inline-block px-5"><a class = "text-xl" href = "#">Resources</a></li>
-                <li class="inline-block px-5"><a class = "text-xl" href = "#">About</a></li>
+                <li class="inline-block px-5"><a class = "text-xl ease duration-300 hover:text-EV-purple" href = "howtoplay.html">How to Play</a></li>
+                <li class="inline-block px-5"><a class = "text-xl ease duration-300 hover:text-EV-purple" href = "resources.html">Resources</a></li>
+                <li class="inline-block px-5"><a class = "text-xl ease duration-300 hover:text-EV-purple" href = "about.html">About</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class = "container ml-24 mx-auto flex-row pt-20">
+    <div class = "container ml-24 mx-auto flex-row py-20">
         <h1 class="font-bold text-8xl drop-shadow-lg mb-2"><span class="text-EV-purple">How to play</span></h1>
     </div>
 
+    <div class="container w-50% mx-auto bg-EV-gray px-10 py-2 border-y-8 border-EV-green rounded-lg my-8">
+        <h1 class="px-5 text-6xl text-EV-green font-bold py-6">Title</h1>
+        <p class="font-bold pb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos fuga numquam quibusdam asperiores porro, neque aut eum incidunt cum nisi nobis voluptatem. Illum odio quisquam aut dicta? Deserunt, ratione aperiam!</p>
+    </div>
 
+    <div class="container w-50% mx-auto bg-EV-gray px-10 py-2 border-y-8 border-EV-green rounded-lg my-8">
+        <h1 class="px-5 text-6xl text-EV-green font-bold py-6">Title</h1>
+        <p class="font-bold pb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos fuga numquam quibusdam asperiores porro, neque aut eum incidunt cum nisi nobis voluptatem. Illum odio quisquam aut dicta? Deserunt, ratione aperiam!</p>
+    </div>
+
+    <div class="container w-50% mx-auto bg-EV-gray px-10 py-2 border-y-8 border-EV-green rounded-lg my-8">
+        <h1 class="px-5 text-6xl text-EV-green font-bold py-6">Title</h1>
+        <p class="font-bold pb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos fuga numquam quibusdam asperiores porro, neque aut eum incidunt cum nisi nobis voluptatem. Illum odio quisquam aut dicta? Deserunt, ratione aperiam!</p>
+    </div>
+
+    <footer>
+        <div class="px-10 p-20">
+            <div class="flex justify-center mb-4">
+                <div class="mr-2 posfooterlogo translate-y-[1px]">
+                    <img src="assets/icon.svg">
+                </div>
+                <h6 class="font-bold text-3xl drop-shadow-lg">
+                    <span class="text-EV-purple">Edu</span><span class="text-EV-green">Venture</span>
+                </h6>
+            </div>
+            <nav class="text-white flex justify-around font-lexend py-2">
+                <ul>
+                    <li class="inline-block px-5 posfooter"><a class="text-xl ease duration-300 hover:text-EV-black" href="#">Contact</a></li>
+                    <li class="inline-block px-5 posfooter"><a class="text-xl ease duration-300 hover:text-EV-black" href="#">Help</a></li>
+                    <li class="inline-block px-5 posfooter"><a class="text-xl ease duration-300 hover:text-EV-black" href="#">About</a></li>
+                    <li class="inline-block px-5 posfooter"><a class="text-xl ease duration-300 hover:text-EV-black" href="#">Disclaimer</a></li>
+                    <li class="inline-block px-5 posfooter"><a class="text-xl ease duration-300 hover:text-EV-black" href="#">Services</a>
+                        <div class="servicesdot"></div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
 </body>
 
 </html>
