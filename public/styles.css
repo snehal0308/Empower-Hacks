@@ -580,12 +580,20 @@ video {
   left: 0px;
 }
 
+.left-200 {
+  left: 400px;
+}
+
 .right-0 {
   right: 0px;
 }
 
 .top-0 {
   top: 0px;
+}
+
+.top-45 {
+  top: 45px;
 }
 
 .top-\[95px\] {
@@ -697,6 +705,10 @@ video {
   width: 24rem;
 }
 
+.w-220 {
+  width: 55rem;
+}
+
 .w-\[850px\] {
   width: 850px;
 }
@@ -795,6 +807,10 @@ video {
 .bg-EV-purple {
   --tw-bg-opacity: 1;
   background-color: rgb(189 116 201 / var(--tw-bg-opacity));
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .p-20 {
