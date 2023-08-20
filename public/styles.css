@@ -852,6 +852,11 @@ video {
   background-color: rgb(189 116 201 / var(--tw-bg-opacity));
 }
 
+.bg-EV-green {
+  --tw-bg-opacity: 1;
+  background-color: rgb(116 201 150 / var(--tw-bg-opacity));
+}
+
 .bg-inherit {
   background-color: inherit;
 }
@@ -938,6 +943,11 @@ video {
   line-height: 2.25rem;
 }
 
+.text-5xl {
+  font-size: 4rem;
+  line-height: 5rem;
+}
+
 .text-8xl {
   font-size: 6rem;
   line-height: 1;
@@ -1008,6 +1018,11 @@ video {
 .triangle {
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+}
+
+.triangle-gameview {
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+          clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
 }
 
 .hover\:-translate-y-5:hover {
