@@ -569,15 +569,26 @@ video {
   }
 }
 
-<<<<<<< Updated upstream
-.absolute {
-=======
+
 .purpleline{
+  background: #BD74C9;
   width: 1326px;
   height: 5px;
-  background: #BD74C9;
->>>>>>> Stashed changes
   position: absolute;
+  left:0;
+  top: 95px;
+  z-index: 1;
+}
+
+
+.triangle {
+  width: 750px;
+  height: 350px;
+  background: #202020;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  position: absolute;
+  left: 576px;
+  top: 92px;
 }
 
 .left-0 {
@@ -681,21 +692,6 @@ video {
   flex-direction: row;
 }
 
-<<<<<<< Updated upstream
-=======
-.flex-column {
-  flex-direction: column;
-}
-
-.flex-nowrap {
-  flex-wrap: nowrap;
-}
-
-.justify-normal {
-  justify-content: normal;
-}
-
->>>>>>> Stashed changes
 .justify-between {
   justify-content: space-between;
 }
@@ -779,6 +775,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -791,50 +792,10 @@ video {
   padding-top: 5rem;
 }
 
-<<<<<<< Updated upstream
 .pt-6 {
   padding-top: 1.5rem;
 }
 
-=======
-.posfooter{
-  position: relative;
-  top: 55px;
-}
-
-.posfooter::before {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 8px;
-  background-color: #BD74C9;
-  border-radius: 50%;
-  position: absolute;
-  top: 50%;
-  left: -6px; /* Adjust this value for spacing */
-  transform: translateY(-50%);
-}
-
-.servicesdot {
-  content: "";
-  display: block;
-  width: 8px;
-  height: 8px;
-  background-color: #BD74C9;
-  border-radius: 50%;
-  position:relative;
-  left:97px;
-  bottom:17px;
-}
-
-.posfooterlogo {
-  position: relative;
-  top: -20px;
-
-}
-
-
->>>>>>> Stashed changes
 .text-center {
   text-align: center;
 }
@@ -923,6 +884,7 @@ video {
 .triangle {
   -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+
 }
 
 .hover\:-translate-y-5:hover {
@@ -933,12 +895,6 @@ video {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-<<<<<<< Updated upstream
-}
-=======
 }
 
 
-
-
->>>>>>> Stashed changes
