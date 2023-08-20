@@ -8,13 +8,13 @@
 </head>
 
 
-<body>
+<body class="bg-EV-gray">
     <header class="px-10 py-2">
         <div class="triangle-gameview w-[850px] h-[450px] bg-EV-green left-0 top-0 absolute"></div>
         <nav class="text-white flex justify-between font-lexend py-6">
             <div class="container w-64 text-xl font-bold">
                 <a href = "index.html" class="flex flex-row">
-                    <img src = "assets/icon.svg" alt="logo" class="-translate-y-1">
+                    <img src = "assets/icon.svg" alt="logo" class="-translate-y-1 h-16 w-16">
                     
                 </a>
             </div>
@@ -29,31 +29,48 @@
     <div class="container mx-60 pt-12 grid grid-cols-2">
         <div>
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">GPA (Unweighted)</span></h2>
-            <input class="text-EV-gray mb-10" placeholder="Enter your GPA" style="width: 200px;">
+            <input class="mb-10 rounded-lg text-center" placeholder="Enter your GPA" style="width: 200px;">
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Income (Annually)</span></h2>
-            <input class="text-EV-gray mb-10" placeholder="Enter your household income" style="width: 230px;">
+            <input class="mb-10 rounded-lg text-center" placeholder="Enter your household income" style="width: 230px;">
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Test Scores</span></h2>
-            <input type="checkbox"><span class="ml-2 text-EV-black">SAT</span><input class="text-EV-gray ml-2" placeholder="400-1600" style="width: 130px;">
-            <br>
-            <input type="checkbox"><span class="ml-2 text-EV-black">ACT</span><input class="text-EV-gray ml-2 mb-10" placeholder="1-36" style="width: 130px;">
+            
+            <div class="container flex flex-row">
+                <input type="checkbox" name="SAT" id="SAT" class="peer">
+                <label for="SAT" class="ml-2 text-EV-black">SAT</label>
+                
+                <div class="invisible peer-checked:visible">
+                    <input class="ml-2 inline-block rounded-lg text-center" placeholder="400-1600" style="width: 130px;">
+                </div>
+            </div>
+
+            <br />
+
+            <div class="container flex flex-row">
+                <input type="checkbox" name="ACT" id="ACT" class="peer">
+                <label for="SAT" class="ml-2 text-EV-black">ACT</label>
+                
+                <div class="invisible peer-checked:visible">
+                    <input class="ml-2 inline-block rounded-lg text-center" placeholder="1-36" style="width: 130px;">
+                </div>
+            </div>
         </div>
 
         <div>
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Extracurriculars</span></h2>
-            <button class="bg-EV-gray mb-10" style="border: 2px solid rgb(116 201 150) ; border-radius: 8px; padding: 0.3rem 1.5rem 0.3rem 1.5rem;">Add extracurriculars</button>
+            <button class="bg-EV-gray mb-10 hover:bg-EV-green hover:text-white hover:-translate-y-1 ease duration-300" style="border: 2px solid rgb(116 201 150) ; border-radius: 8px; padding: 0.3rem 1.5rem 0.3rem 1.5rem;">Add extracurriculars</button>
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Ethnicity</span></h2>
-            <input class="text-EV-gray mb-10" placeholder="Enter your ethnicity" style="width: 230px;">
+            <input class="mb-10 rounded-lg text-center" placeholder="Enter your ethnicity" style="width: 230px;">
 
             <h2 class="font-bold text-3xl mb-12"><span class="text-EV-green mr-4">First generation</span><input type="checkbox"><span class="text-EV-black"></span></h2>
 
-            <nav>
+            <button>
                 <a href="gameview2.html">
-                    <img src="assets/nextbutton.svg" style="width:120px;">
+                    <img src="assets/nextbutton.svg" style="width:120px;" class="hover:translate-x-2 ease duration-300">
                 </a>
-            </nav>
+            </button>
 
         </div>
 

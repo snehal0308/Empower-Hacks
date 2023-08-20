@@ -3,5 +3,11 @@
 @tailwind utilities;
 
 .triangle {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
-  }
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+}
+
+.triangle-gameview {
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
+}
