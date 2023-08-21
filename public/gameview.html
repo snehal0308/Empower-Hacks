@@ -29,10 +29,10 @@
     <div class="container mx-60 pt-12 grid grid-cols-2">
         <div>
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">GPA (Unweighted)</span></h2>
-            <input class="mb-10 rounded-lg text-center" placeholder="Enter your GPA" style="width: 200px;">
+            <input id="GPA" class="mb-10 rounded-lg text-center" placeholder="Enter your GPA" style="width: 200px;">
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Income (Annually)</span></h2>
-            <input class="mb-10 rounded-lg text-center" placeholder="Enter your household income" style="width: 230px;">
+            <input id="HouseHoldIncome" class="mb-10 rounded-lg text-center" placeholder="Enter your household income" style="width: 230px;">
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Test Scores</span></h2>
             
@@ -41,7 +41,7 @@
                 <label for="SAT" class="ml-2 text-EV-black">SAT</label>
                 
                 <div class="invisible peer-checked:visible">
-                    <input class="ml-2 inline-block rounded-lg text-center" placeholder="400-1600" style="width: 130px;">
+                    <input id="SATScore" class="ml-2 inline-block rounded-lg text-center" placeholder="400-1600" style="width: 130px;">
                 </div>
             </div>
 
@@ -52,22 +52,88 @@
                 <label for="SAT" class="ml-2 text-EV-black">ACT</label>
                 
                 <div class="invisible peer-checked:visible">
-                    <input class="ml-2 inline-block rounded-lg text-center" placeholder="1-36" style="width: 130px;">
+                    <input id="ACTScore" class="ml-2 inline-block rounded-lg text-center" placeholder="1-36" style="width: 130px;">
                 </div>
             </div>
         </div>
 
         <div>
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Extracurriculars</span></h2>
-            <button class="bg-EV-gray mb-10 hover:bg-EV-green hover:text-white hover:-translate-y-1 ease duration-300" style="border: 2px solid rgb(116 201 150) ; border-radius: 8px; padding: 0.3rem 1.5rem 0.3rem 1.5rem;">Add extracurriculars</button>
+            <button disabled class="bg-EV-gray mb-10 hover:bg-EV-green hover:text-white hover:-translate-y-1 ease duration-300" style="border: 2px solid rgb(116 201 150) ; border-radius: 8px; padding: 0.3rem 1.5rem 0.3rem 1.5rem;">Add extracurriculars \Coming Soon/</button>
 
             <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Ethnicity</span></h2>
-            <input class="mb-10 rounded-lg text-center" placeholder="Enter your ethnicity" style="width: 230px;">
-
-            <h2 class="font-bold text-3xl mb-12"><span class="text-EV-green mr-4">First generation</span><input type="checkbox"><span class="text-EV-black"></span></h2>
-
-            <button>
-                <a href="gameview2.html">
+            <select id="Ethnicity" class="mb-10 rounded-lg text-center" placeholder="Enter your ethnicity" style="width: 230px;">
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="Asian">Asian</option>
+                <option value="American Indian/Alaska Native">American Indian/Alaska Native</option>
+                <option value="other">Other</option>
+            </select>
+            <h2 class="font-bold text-3xl mb-12"><span class="text-EV-green mr-4">First generation</span><input id="IsFirstGen" type="checkbox"><span class="text-EV-black"></span></h2>
+            <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">Gender</span></h2>
+            <select id="Gender" class="mb-10 rounded-lg text-center"style="width: 230px;">
+                <option value=false>Male</option>
+                <option value=true>Female</option>
+                <option value=false>Other</option>
+            </select>
+            <h2 class="font-bold text-3xl mb-2"><span class="text-EV-green">State</span></h2>
+            <input list="StateList" type="search" id="State" class="mb-10 rounded-lg text-center" placeholder="Enter your state" style="width: 230px;">
+            <datalist id="StateList" >
+                <option value="TX">Texas</option>
+                <option value="CA">California</option>
+                <option value="NY">New York</option>
+                <option value="FL">Florida</option>
+                <option value="IL">Illinois</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="OH">Ohio</option>
+                <option value="GA">Georgia</option>
+                <option value="NC">North Carolina</option>
+                <option value="MI">Michigan</option>
+                <option value="NJ">New Jersey</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="AZ">Arizona</option>
+                <option value="MA">Massachusetts</option>
+                <option value="TN">Tennessee</option>
+                <option value="IN">Indiana</option>
+                <option value="MO">Missouri</option>
+                <option value="MD">Maryland</option>
+                <option value="WI">Wisconsin</option>
+                <option value="MN">Minnesota</option>
+                <option value="CO">Colorado</option>
+                <option value="AL">Alabama</option>
+                <option value="SC">South Carolina</option>
+                <option value="LA">Louisiana</option>
+                <option value="KY">Kentucky</option>
+                <option value="OR">Oregon</option>
+                <option value="OK">Oklahoma</option>
+                <option value="CT">Connecticut</option>
+                <option value="IA">Iowa</option>
+                <option value="UT">Utah</option>
+                <option value="MS">Mississippi</option>
+                <option value="AR">Arkansas</option>
+                <option value="KS">Kansas</option>
+                <option value="NV">Nevada</option>
+                <option value="NM">New Mexico</option>
+                <option value="NE">Nebraska</option>
+                <option value="WV">West Virginia</option>
+                <option value="ID">Idaho</option>
+                <option value="HI">Hawaii</option>
+                <option value="ME">Maine</option>
+                <option value="NH">New Hampshire</option>
+                <option value="RI">Rhode Island</option>
+                <option value="MT">Montana</option>
+                <option value="DE">Delaware</option>
+                <option value="SD">South Dakota</option>
+                <option value="ND">North Dakota</option>
+                <option value="AK">Alaska</option>
+                <option value="DC">Washington DC/District of Columbia</option>
+                <option value="VT">Vermont</option>
+                <option value="WY">Wyoming</option>
+            </datalist>
+            <button disabled id="Continue">
+                <a>
                     <img src="assets/nextbutton.svg" style="width:120px;" class="hover:translate-x-2 ease duration-300">
                 </a>
             </button>
@@ -78,7 +144,7 @@
     </div>
     
 
-
+    <script type="module" src="game.js"></script>
 
 
 </body>

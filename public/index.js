@@ -62,19 +62,8 @@ class Match {
         this.breakdown = breakdown;
     }
 }
-const handler = {
-    set: function (obj, prop, value) {
-        obj[prop] = value;
-        obj.matches = []; // Reset matches
-    }
-}
-function StudentProfile() {
-    if (!new.target) {
-        throw new Error("StudentProfile must be called with new");
-    }
-    return new Proxy(new studentProfile(...arguments), handler)
-}
-class studentProfile {
+
+class StudentProfile {
     constructor(gpa, satScore, actScore, ECMap, numAPClasses, offeredAPClasses, hhIncome, isFirstGeneration, ethnicity, isFemale, currentState, preferredState) {
         this.gpa = gpa;
         this.satScore = satScore;
@@ -88,7 +77,9 @@ class studentProfile {
         this.isFemale = isFemale;
         this.currentState = currentState;
         this.preferredState = preferredState;
+        this.dreamSchool = null;
         this.matches = [];
+        this.reconstruct = [gpa, satScore, actScore, ECMap, numAPClasses, offeredAPClasses, hhIncome, isFirstGeneration, ethnicity, isFemale, currentState, preferredState, this.dreamSchool];
     }
     Match(collegeProfile) {
         let base = collegeProfile.acceptanceRate;
@@ -193,6 +184,53 @@ class CollegeProfile {
         return studentProfile.Match(this);
     }
 }
+const searchSchool = async (name) => {
+    const result = await fetch(`${baseURL}&school.name=${encodeURIComponent(name)}&fields=school.name,id&api_key=${apiKey}&per_page=6`);
+    const data = await result.json();
+    if (data.metadata.total == 0) {
+        return null;
+    }
+    return data.results;
+}
+const getSchool = async (id) => {
+    const result = await fetch(`${baseURL}&id=${id}&api_key=${apiKey}&fields=${fields}`);
+    const data = await result.json();
+    if (data.metadata.total == 0) {
+        return null;
+    }
+    var college = data.results[0];
+    return new CollegeProfile(
+        college["school.name"],
+        college["school.city"],
+        college["school.state"],
+        college["school.school_url"],
+        college["school.price_calculator_url"],
+        college["school.zip"],
+        college["latest.admissions.admission_rate.overall"] || 0.1,
+        college["latest.admissions.sat_scores.average.overall"],
+        (college["latest.admissions.sat_scores.25th_percentile.critical_reading"] + college["latest.admissions.sat_scores.25th_percentile.writing"]) / 2 + college["latest.admissions.sat_scores.25th_percentile.math"],
+        (college["latest.admissions.sat_scores.75th_percentile.critical_reading"] + college["latest.admissions.sat_scores.75th_percentile.writing"]) / 2 + college["latest.admissions.sat_scores.75th_percentile.math"],
+        college["latest.admissions.act_scores.midpoint.cumulative"],
+        college["latest.admissions.act_scores.25th_percentile.cumulative"],
+        college["latest.admissions.act_scores.75th_percentile.cumulative"],
+        college["latest.student.size"],
+        college["latest.cost.tuition.in_state"],
+        college["latest.cost.tuition.out_of_state"],
+        college["latest.cost.attendance.academic_year"],
+        college["latest.student.share_firstgeneration"],
+        college["latest.student.demographics.median_hh_income"],
+        college["latest.student.demographics.race_ethnicity.white"],
+        college["latest.student.demographics.race_ethnicity.black"],
+        college["latest.student.demographics.race_ethnicity.hispanic"],
+        college["latest.student.demographics.race_ethnicity.asian"],
+        college["latest.student.demographics.race_ethnicity.aian"],
+        college["latest.student.demographics.race_ethnicity.unknown"],
+        college["latest.student.demographics.men"],
+        college["latest.student.demographics.women"],
+        college["latest.student.FAFSA_applications"],
+        college["latest.student.students_with_pell_grant"]
+    );
+}
 const getCollegeSelectionByStudentProfile = async (studentProfile) => {
     const searchParams = {
         [abbreviate("SAT", true)]: bounds(studentProfile.satScore - 80, studentProfile.satScore + 80),
@@ -209,7 +247,7 @@ const getCollegeSelectionByStudentProfile = async (studentProfile) => {
             college["school.school_url"],
             college["school.price_calculator_url"],
             college["school.zip"],
-            college["latest.admissions.admission_rate.overall"],
+            college["latest.admissions.admission_rate.overall"] || 0.1,
             college["latest.admissions.sat_scores.average.overall"],
             (college["latest.admissions.sat_scores.25th_percentile.critical_reading"] + college["latest.admissions.sat_scores.25th_percentile.writing"]) / 2 + college["latest.admissions.sat_scores.25th_percentile.math"],
             (college["latest.admissions.sat_scores.75th_percentile.critical_reading"] + college["latest.admissions.sat_scores.75th_percentile.writing"]) / 2 + college["latest.admissions.sat_scores.75th_percentile.math"],
@@ -245,5 +283,25 @@ const getCollegeSelectionByStudentProfile = async (studentProfile) => {
 function map_range(value, low1, high1, low2, high2) {
     return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
+var currentStudentProfile;
 
+function setStudentProfile(studentProfile) {
+    if (studentProfile.reconstruct[12] == null) {
+        studentProfile.reconstruct[12] = studentProfile.dreamSchool;
+    }
+    localStorage.setItem("studentProfile", JSON.stringify(studentProfile.reconstruct));
+}
+async function getStudentProfile(convert = false) {
+    var arry = JSON.parse(localStorage.getItem("studentProfile"));
+    var dreamSchool = arry.pop();
+    
+    var profile = new StudentProfile(...arry);
+    profile.reconstruct = [...arry, dreamSchool];
+    profile.dreamSchool = dreamSchool;
+    if (convert) {
+        profile.dreamSchoolProfile = await getSchool(dreamSchool);
+    }
+    return profile;
+}
 
+export { getCollegeSelectionByStudentProfile, StudentProfile, CollegeProfile, searchSchool, getSchool, setStudentProfile, getStudentProfile };
