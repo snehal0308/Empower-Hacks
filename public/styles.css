@@ -659,6 +659,10 @@ video {
   margin-left: 0.5rem;
 }
 
+.ml-12 {
+  margin-left: 3rem;
+}
+
 .ml-24 {
   margin-left: 6rem;
 }
@@ -1187,4 +1191,28 @@ video {
 
 .peer:checked ~ .peer-checked\:visible {
   visibility: visible;
+}
+
+.list-item-about {
+  position: relative;
+  padding-left: 50px; 
+  margin-bottom: 10px; 
+}
+
+
+.list-item-about::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url('assets/checkmark.svg') center center no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.list-item-container {
+  display:flex;
+  flex-direction: column;
+  flex-basis: 100%;
 }
