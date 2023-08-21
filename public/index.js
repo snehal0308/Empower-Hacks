@@ -82,48 +82,58 @@ class StudentProfile {
         this.reconstruct = [gpa, satScore, actScore, ECMap, numAPClasses, offeredAPClasses, hhIncome, isFirstGeneration, ethnicity, isFemale, currentState, preferredState, this.dreamSchool];
     }
     Match(collegeProfile) {
-        let base = collegeProfile.acceptanceRate;
+        let base = collegeProfile.acceptanceRate || .1;
         var adjustedTestScoreToCollege;
+        this.satScore = Math.max(0, Math.min(1600, this.satScore));
+        this.actScore = Math.max(0, Math.min(36, this.actScore));
+        this.gpa = Math.max(0, Math.min(4, this.gpa));
         var percentMatchByTestScores, percentMatchByGPA, percentMatchByFirstGen, percentMatchByEthnicity, percentMatchByGender, percentMatchByState, percentMatchByHHIncome, percentMatchByECs;
         // 400 - -1, sat25 - -0.5, sat - 0, sat75 - +.25, 1600 - +.5
         // 1 - -1, act25 - -0.5, act - 0, act75 - +.25, 36 - +.5
         if (this.satScore != 0 && this.actScore != 0) {
-            adjustedTestScoreToCollege = Math.max(map_range(this.satScore, collegeProfile.sat25, collegeProfile.sat75, -0.3, .3) * base, map_range(this.actScore, collegeProfile.act25, collegeProfile.act75, -0.3, .3) * base); // Boosts score if greater than 50th percentile, lowers if less than 50th percentile
-            percentMatchByTestScores = Math.max(Math.max(Math.min(map_range(this.satScore, collegeProfile.sat25, collegeProfile.sat, .4, 1), 1), 0) + Math.max(Math.min(map_range(this.actScore, collegeProfile.act25, collegeProfile.act, .4, 1), 1), 0));
+            adjustedTestScoreToCollege = Math.max(map_range(this.satScore, collegeProfile.sat25 || 1000, collegeProfile.sat75 || 1300, -0.1, .6) * base, map_range(this.actScore, collegeProfile.act25 || 24, collegeProfile.act75 || 30, -0.1, .6) * base); // Boosts score if greater than 50th percentile, lowers if less than 50th percentile
+            percentMatchByTestScores = Math.max(Math.max(Math.min(map_range(this.satScore, collegeProfile.sat25 || 1000, collegeProfile.sat, .4, 1), 1), 0) + Math.max(Math.min(map_range(this.actScore, collegeProfile.act25 || 24, collegeProfile.act || 30, .4, 1), 1), 0));
         } else if (this.satScore != 0) {
-            adjustedTestScoreToCollege = map_range(this.satScore, collegeProfile.sat25, collegeProfile.sat75, -0.3, .3) * base;
-            percentMatchByTestScores = Math.max(Math.min(map_range(this.satScore, collegeProfile.sat25, collegeProfile.sat, .4, 1), 1), 0);
+            adjustedTestScoreToCollege = map_range(this.satScore, collegeProfile.sat25 || 1000, collegeProfile.sat75 || 1300, -0.1, .6) * base;
+            percentMatchByTestScores = Math.max(Math.min(map_range(this.satScore, collegeProfile.sat25 || 1000, collegeProfile.sat, .4, 1), 1), 0);
         } else if (this.actScore != 0) {
-            adjustedTestScoreToCollege = map_range(this.actScore, collegeProfile.act25, collegeProfile.act75, -0.3, .3) * base;
-            percentMatchByTestScores = Math.max(Math.min(map_range(this.actScore, collegeProfile.act25, collegeProfile.act, .4, 1), 1), 0);
+            adjustedTestScoreToCollege = map_range(this.actScore, collegeProfile.act25 || 24, collegeProfile.act75 || 30, -0.1, .6) * base;
+            percentMatchByTestScores = Math.max(Math.min(map_range(this.actScore, collegeProfile.act25 || 24, collegeProfile.act || 30, .4, 1), 1), 0);
         } else {
             // Went test optional
             adjustedTestScoreToCollege = 0;
         }
-        
+        base += map_range(this.gpa, 1, 4, -.1, .3);
         percentMatchByGPA = Math.max(Math.min(map_range(this.gpa, map_range(1 - collegeProfile.acceptanceRate, 0, 1, 0, 1.0, .25, 1), map_range(1 - collegeProfile.acceptanceRate, 0, 1, 3, 4), .25, 1), 1), 0);
         //percentMatchByIncome = Math.max(Math.min(map_range(this.hhIncome, collegeProfile.MedianHHIncome - 10000, collegeProfile.MedianHHIncome + 10000, 0, 1), 1), 0);
         percentMatchByFirstGen = collegeProfile.PercentFirstGeneration > .4 ? 1 : 0.97;
         
         var majorityDemographic = Math.max(collegeProfile.PercentWhite, collegeProfile.PercentBlack, collegeProfile.PercentHispanic, collegeProfile.PercentAsian, collegeProfile.PercentAIAN);
+        var isMinority;
         switch (this.ethnicity) {
             case "White":
                 percentMatchByEthnicity = majorityDemographic == collegeProfile.PercentWhite;
+                isMinority = false;
                 break;
             case "Black":
                 percentMatchByEthnicity = majorityDemographic == collegeProfile.PercentBlack;
+                isMinority = true;
                 break;
             case "Hispanic":
                 percentMatchByEthnicity = majorityDemographic == collegeProfile.PercentHispanic;
+                isMinority = true;
                 break;
             case "Asian":
                 percentMatchByEthnicity = majorityDemographic == collegeProfile.PercentAsian;
+                isMinority = false;
                 break;
             case "American Indian/Alaska Native":
                 percentMatchByEthnicity = majorityDemographic == collegeProfile.PercentAIAN;
+                isMinority = true;
                 break;
             default:
                 percentMatchByEthnicity = true;
+                isMinority = false;
                 break;
         }
         percentMatchByEthnicity = percentMatchByEthnicity ? 1 : 0.95;

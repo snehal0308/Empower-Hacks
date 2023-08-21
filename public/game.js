@@ -15,9 +15,9 @@ for (let i = 0; i < rinputs.length; i++) {
 document.getElementById("Continue").addEventListener("click", function () {
     setStudentProfile(
         new StudentProfile(
-            document.getElementById("GPA").value || 3.0,
-            document.getElementById("SATScore").value || 0,
-            document.getElementById("ACTScore").value || 0,
+            parseFloat(document.getElementById("GPA").value) || 3.0,
+            parseInt(document.getElementById("SATScore").value) || 0,
+            parseInt(document.getElementById("ACTScore").value) || 0,
             0,
             0,
             0,

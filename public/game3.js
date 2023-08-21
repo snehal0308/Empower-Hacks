@@ -1,5 +1,5 @@
 import { getStudentProfile } from "./index.js";
-var profile = await getStudentProfile(true);
+var profilef = await getStudentProfile(true);
 
 var items = [
     {
@@ -8,9 +8,9 @@ var items = [
         validator: function (choice, profile) {
 
             if (choice == 1) {
-                profile.gpa += 0.25;
+                profile.gpa += 0.2;
             } else {
-                profile.gpa += 0.5;
+                profile.gpa += 0.3;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Beware, AP classes can be much more stressful, but can improve your chances of getting into your dream school!"];
         },
@@ -35,7 +35,7 @@ var items = [
             if (choice == 1) {
                 profile.hhIncome += 5000;
             } else {
-                profile.gpa += 0.5;
+                profile.gpa += 0.1;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Getting a job can be a great way to earn money, but it can also take time away from your studies and extracurriculars. Extracurriculars can be a great way to improve your chances of getting into your dream school, but they can be expensive!"];
         }
@@ -45,9 +45,9 @@ var items = [
         choice2: "Join a (high-impact) club",
         validator: function (choice, profile) {
             if (choice == 1) {
-                profile.gpa += 0.5;
+                profile.gpa += 0.1;
             } else {
-                profile.gpa += 0.3;
+                profile.gpa += 0.05;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Starting a club is a great way to showcase leadership and initiative, but is extremely time consuming. Joining a club may not be as impressive, but it is much less time consuming."];
         }
@@ -69,9 +69,9 @@ var items = [
         choice2: "Lie about your activities",
         validator: function (choice, profile) {
             if (choice == 1) {
-                profile.gpa += 0.5;
+                profile.gpa += 0.2;
             } else {
-                profile.gpa -= 0.3;
+                profile.gpa -= 0.1;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Explaining your extracurriculars correctly can be the difference between getting into your dream school and not. Lying on your resume is easier to catch than you think, and will surely get you rejected."];
         }
@@ -81,7 +81,7 @@ var items = [
         choice2: "Trust your academic record",
         validator: function (choice, profile) {
             if (choice == 1) {
-                profile.gpa += 0.5;
+                profile.gpa += 0.05;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Essays are a great way to showcase your personality and your passion, but they can also be a great way to show your lack of passion. Make sure your essays showcase your personality, don't rely on your academic record to get you in."];
         }
@@ -91,9 +91,9 @@ var items = [
         choice2: "Get a letter of recommendation from a politician",
         validator: function (choice, profile) {
             if (choice == 1) {
-                profile.gpa += 0.5;
+                profile.gpa += 0.1;
             } else {
-                profile.gpa -= 0.3;
+                profile.gpa += 0.2;
             }
             return [profile.Match(profile.dreamSchoolProfile), "Getting a letter of recommendation from a teacher is a great way to showcase your academic prowess and may be more personal, but getting a letter of recommendation from connections showcases variety and willingness to put yourself out there!"];
         }
@@ -103,7 +103,8 @@ var items = [
 var list = items;
 let isPlaying = false;
 //var item = items[Math.floor(Math.random()*items.length)];
-
+profilef.gpa -= 1.2;
+var before;
 function nextChoice() {
     if (items.length == 0) {
         isPlaying = false;
@@ -111,22 +112,44 @@ function nextChoice() {
         document.getElementById("Continue").disabled = false;
         return;
     }
+    document.getElementById("Prompt").innerHTML ="Choose wisely...";
     var num = Math.floor(Math.random() * items.length);
     var item = items[num];
     document.getElementById("Choice1").innerHTML = item.choice1;
     document.getElementById("Choice2").innerHTML = item.choice2;
     document.getElementById("Choice1").onclick = function () {
-        var result = item.validator(1, profile);
-        document.getElementById("Chancing").innerHTML = result[0].percentChance;
+        var result = item.validator(1, profilef);
+        if (result[0]._college > before) {
+            document.getElementById("Chancing").style.color = "green";
+        } else if (result[0]._college < before) {
+            document.getElementById("Chancing").style.color = "red";
+        } else {
+            document.getElementById("Chancing").style.color = "white";
+        }
+        before = result[0]._college;
+        document.getElementById("Chancing").innerHTML = result[0].college;
         document.getElementById("Prompt").innerHTML = result[1];
         document.getElementById("Continue").disabled = false;
+        document.getElementById("Choice1").onclick = null;
+        document.getElementById("Choice2").onclick = null;
     }
     document.getElementById("Choice2").onclick = function () {
-        var result = item.validator(2, profile);
-        document.getElementById("Chancing").innerHTML = result[0].percentChance;
+        var result = item.validator(2, profilef);
+        if (result[0]._college > before) {
+            document.getElementById("Chancing").style.color = "green";
+        } else if (result[0]._college < before) {
+            document.getElementById("Chancing").style.color = "red";
+        } else {
+            document.getElementById("Chancing").style.color = "white";
+        }
+        document.getElementById("Chancing").innerHTML = result[0].college;
+        before = result[0]._college;
         document.getElementById("Prompt").innerHTML = result[1];
         document.getElementById("Continue").disabled = false;
+        document.getElementById("Choice1").onclick = null;
+        document.getElementById("Choice2").onclick = null;
     }
+    
     items.splice(num, 1);
 }
 
@@ -136,7 +159,8 @@ document.getElementById("Continue").onclick = function () {
         items = list;
         isPlaying = true;
         document.getElementById("Prompt").innerHTML = "Welcome to the College Admissions Simulator! Click on the buttons to make decisions that will affect your chances of getting into your dream school. Continue to move on. Good luck!";
-        document.getElementById("Chancing").innerHTML = profile.Match(profile.dreamSchoolProfile).percentChance;
+        document.getElementById("Chancing").innerHTML = profilef.Match(profilef.dreamSchoolProfile).college;
+        before = profilef.Match(profilef.dreamSchoolProfile)._college;
         return;
     }
     nextChoice();
