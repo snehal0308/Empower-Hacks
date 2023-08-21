@@ -584,12 +584,23 @@ video {
   left: 0px;
 }
 
+.left-400 {
+  left: 400px;
+}
+
+
 .right-0 {
   right: 0px;
 }
 
 .top-0 {
   top: 0px;
+}
+
+.top-45 {
+  top: 45px;
+
+
 }
 
 .top-\[95px\] {
@@ -765,6 +776,10 @@ video {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-220 {
+  width: 55rem;
 }
 
 .w-\[850px\] {
@@ -1215,4 +1230,8 @@ video {
   display:flex;
   flex-direction: column;
   flex-basis: 100%;
+}
+
+.font-p2s {
+  font-family: 'Press Start 2P', cursive;
 }
