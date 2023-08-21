@@ -584,6 +584,10 @@ video {
   left: 0px;
 }
 
+.left-400 {
+  left: 400px;
+}
+
 .right-0 {
   right: 0px;
 }
@@ -600,6 +604,11 @@ video {
   top: 99px;
 }
 
+.top-45 {
+  top: 45px;
+
+
+}
 .mx-5 {
   margin-left: 1.25rem;
   margin-right: 1.25rem;
@@ -687,6 +696,10 @@ video {
   height: 4rem;
 }
 
+.h-64 {
+  height: 16rem;
+}
+
 .h-72 {
   height: 18rem;
 }
@@ -717,6 +730,10 @@ video {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-220 {
+  width: 55rem;
 }
 
 .w-\[850px\] {
@@ -1090,4 +1107,7 @@ video {
 
 .peer:checked ~ .peer-checked\:visible {
   visibility: visible;
+}
+.font-ps2 {
+  font-family: 'Press Start 2P', cursive;
 }
