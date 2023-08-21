@@ -584,12 +584,23 @@ video {
   left: 0px;
 }
 
+.left-400 {
+  left: 400px;
+}
+
+
 .right-0 {
   right: 0px;
 }
 
 .top-0 {
   top: 0px;
+}
+
+.top-45 {
+  top: 45px;
+
+
 }
 
 .top-\[95px\] {
@@ -657,6 +668,10 @@ video {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.ml-12 {
+  margin-left: 3rem;
 }
 
 .ml-24 {
@@ -761,6 +776,10 @@ video {
 
 .w-96 {
   width: 24rem;
+}
+
+.w-220 {
+  width: 55rem;
 }
 
 .w-\[850px\] {
@@ -1187,4 +1206,32 @@ video {
 
 .peer:checked ~ .peer-checked\:visible {
   visibility: visible;
+}
+
+.list-item-about {
+  position: relative;
+  padding-left: 50px; 
+  margin-bottom: 10px; 
+}
+
+
+.list-item-about::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url('assets/checkmark.svg') center center no-repeat;
+  width: 30px;
+  height: 30px;
+}
+
+.list-item-container {
+  display:flex;
+  flex-direction: column;
+  flex-basis: 100%;
+}
+
+.font-p2s {
+  font-family: 'Press Start 2P', cursive;
 }
